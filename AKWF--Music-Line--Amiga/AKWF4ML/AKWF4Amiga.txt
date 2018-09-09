@@ -1,0 +1,48 @@
+         ADVENTURE KID WAVEFORMS for AMIGA
+              by Kristoffer Ekstrand
+
+           Amiga conversion by ADRDesign
+
+This   is  the  complete  Adventure  Kid  Waveforms
+collection converted to 8-bit samples and 256 bytes
+length.   The loop is enabled and there are 8 empty
+bytes  at  the  beginning to allow resampling up to
+two   octaves  without  suffering  changes  in  the
+beginning of the sample (the ST instruments require
+the  first 2 bytes set to zero, so part of the data
+in  the  loop  would  be  affected  without those 8
+bytes).  Moreover, the beginning of the loop has to
+be a multiple of 8 in Protracker 3 in order to play
+it properly.
+
+I  used a length of 256 bytes for the cycle because
+it's tuned (set finetune +1 for real A=440 tuning),
+retains  sufficient quality and is easily divisible
+by  2  repeatedly, in order to reach higher octaves
+if  needed:  You will notice some loss of harmonics
+but not much.
+
+If  you want to get the original files for your DAW
+please go to http://www.adventurekid.se/AKRT
+
+On  the  page  you'll  find  a  visual guide of all
+waveforms available if you need to locate some at a
+glance.
+
+It's  amazing  the  quality  and  richness of these
+sounds,  and  they are just perfect for chip music:
+Believe me, you HAVE to try them.
+
+All  rights  (if  any)  remains to Adventure Kid, I
+only  did  the resampling and looping job to spread
+its use to Amiga.
+
+                               Thanks for watching!
+
+                           soundcloud.com/adrdesign
+                              youtube.com/adrdesign
+
+PS 1:  Does anyone dares to make a set for
+       Musicline and/or AHX ?
+
+PS 2:  Sorry for my english!
