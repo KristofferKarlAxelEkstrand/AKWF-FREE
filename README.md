@@ -4,7 +4,7 @@ AKWF or Adventure Kid Waveforms is a collection of one cycle waveforms to be use
 
 ## Who Uses AKWF
 
-Elektron https://www.elektron.se/
+
 
 ## How It Works
 
