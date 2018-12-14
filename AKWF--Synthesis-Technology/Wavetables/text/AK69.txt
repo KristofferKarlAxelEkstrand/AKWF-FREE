@@ -1,0 +1,15 @@
+Adventure Kid Waveforms (AKWF) converted to Synthesis Technology wavetables 
+ 
+AKWF is a collection of one cycle waveforms sampled 
+from various sources intended for use as oscillator 
+shapes in samplers and synthesizers. 
+ 
+file list 
+--------- 
+ 
+..\AKWF_violin/AKWF_violin_0009.wav 
+..\AKWF_violin/AKWF_violin_0010.wav 
+..\AKWF_violin/AKWF_violin_0011.wav 
+..\AKWF_violin/AKWF_violin_0012.wav 
+..\AKWF_violin/AKWF_violin_0013.wav 
+..\AKWF_violin/AKWF_violin_0014.wav 
