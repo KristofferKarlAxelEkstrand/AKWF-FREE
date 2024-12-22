@@ -1,8 +1,8 @@
 #!/bin/bash
 # Run this inside the AKWF-c folder to convert waveform data from C constants
-# into a JavaScript object
+# into a JavaScript object with normalized floating point values (-1 to 1)
 
-# Function to process a single file
+# Function to process a single file and normalize values
 process_file() {
     local file="$1"
     grep -A 300 "AKWF_[0-9a-z_]* \[\] = {" "$file" | \
@@ -12,11 +12,16 @@ process_file() {
         tr '\n' ' ' | \
         sed 's/^ *//;s/ *$//' | \
         tr -s ' ' | \
-        sed 's/ /,/g'
+        awk '{
+            for (i=1; i<=NF; i++) {
+                # Convert from unsigned (0-65535) to signed (-1 to 1) range
+                printf "%.6f", ($i - 32768)/32768
+                if (i < NF) printf ","
+            }
+        }'
 }
 
 output_file="waveforms.js"
-#max_groups=7
 
 # Start the JavaScript object structure
 echo "// Adventure Kid Waveforms (AKWF) converted into a JavaScript object.
@@ -34,11 +39,6 @@ const waveforms = {" > "$output_file"
 # Find and process AKWF_* directories
 dir_count=0
 for dir in $(find . -maxdepth 1 -type d -name "AKWF_*" | sort -V); do
-    # Skip if we've already processed max_groups
-    #if [ $dir_count -ge $max_groups ]; then
-    #    break
-    #fi
-    
     dir_name=$(basename "$dir")
     echo "Processing $dir_name..." >&2
     
@@ -46,6 +46,7 @@ for dir in $(find . -maxdepth 1 -type d -name "AKWF_*" | sort -V); do
     echo "  \"$dir_name\": {" >> "$output_file"
     
     # Process all .h files in this directory
+    first_file=true
     for file in "$dir"/*.h; do
         if [ -f "$file" ]; then
             data=$(process_file "$file")
@@ -54,13 +55,21 @@ for dir in $(find . -maxdepth 1 -type d -name "AKWF_*" | sort -V); do
                 # Get filename without path and .h extension
                 filename=$(basename "$file" .h)
                 
-                # Write key-value pair for this waveform
-                echo "    \"$filename\": [$data]," >> "$output_file"
+                # Add comma for all but first entry
+                if [ "$first_file" = true ]; then
+                    first_file=false
+                else
+                    echo "," >> "$output_file"
+                fi
+                
+                # Write key-value pair for this waveform (without trailing comma)
+                echo -n "    \"$filename\": [$data]" >> "$output_file"
             fi
         fi
     done
     
     # Close the directory object
+    echo "" >> "$output_file"
     echo "  }," >> "$output_file"
     
     ((dir_count++))
@@ -71,4 +80,3 @@ echo "};" >> "$output_file"
 
 # Add export statement
 echo "export default waveforms;" >> "$output_file"
-
