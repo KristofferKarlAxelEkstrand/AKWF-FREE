@@ -2,5 +2,6 @@
 	"cSpell.words": ["Akai", "AKWF", "Elektron"],
 	"editor.formatOnSave": true,
 	"prettier.requireConfig": true,
-	"prettier.plugins": ["prettier-plugin-md"]
+	"prettier.plugins": ["prettier-plugin-md"],
+	"workbench.colorTheme": "SynthWave '84"
 }
