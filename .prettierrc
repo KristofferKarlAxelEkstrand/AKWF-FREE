@@ -1,0 +1,4 @@
+{
+  "plugins": ["prettier-plugin-md"],
+  "markdownListMarkerSpace": 1
+}
