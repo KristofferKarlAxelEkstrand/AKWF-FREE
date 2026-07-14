@@ -1,0 +1,25 @@
+{
+	"name": "AKWF-FREE",
+	"build": {
+		"dockerfile": "Dockerfile"
+	},
+	"remoteUser": "vscode",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"dbaeumer.vscode-eslint",
+				"esbenp.prettier-vscode",
+				"editorconfig.editorconfig",
+				"davidanson.vscode-markdownlint",
+				"ms-vscode.cpptools",
+				"ms-vscode.cmake-tools",
+				"twxs.cmake"
+			],
+			"settings": {
+				"editor.formatOnSave": true,
+				"files.eol": "\n"
+			}
+		}
+	},
+	"postCreateCommand": "echo '\n   _____   ____  __.__      _____________' && echo '  /  _  \\ |    |/ _/  \\\\    /  \\\\_   _____/   F R E E' && echo ' /  /_\\\\  \\\\|      < \\\\   \\\\/\\\\/   /|    __)' && echo '/    |    \\\\    |  \\ \\\\        / |     \\\\' && echo '\\\\____|__  /____|__ \\ \\\\__/\\\\  /  \\\\___  /' && echo '        \\\\/        \\\\/      \\\\/       \\\\/' && echo '\\nEnvironment Check:' && node --version && npm --version && sox --version | head -n1 && ffmpeg -version | head -n1 && g++ --version | head -n1 && cmake --version | head -n1 && gdb --version | head -n1"
+}
