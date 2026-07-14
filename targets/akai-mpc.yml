@@ -1,0 +1,41 @@
+name: "Akai MPC"
+output_dir: "AKWF--Akai-MPC"
+description: >
+  Format compatible with Akai MPC samplers (MPC One, MPC Live, MPC X, etc.).
+  Uses uppercase .WAV extension. Same audio specs as source but with
+  MPC-compatible WAV headers and peak normalization.
+
+audio:
+  format: wav
+  bit_depth: 16
+  sample_rate: 44100
+  channels: mono
+  length_samples: 600        # Same as source
+
+resample:
+  method: none               # No resampling needed — same length as source
+
+normalize:
+  enabled: true
+  method: peak
+  target_dbfs: -0.1
+  remove_dc: true
+
+naming:
+  extension: ".WAV"          # MPC expects uppercase
+  filename_case: preserve
+  extension_case: upper
+
+structure:
+  mirror_source: true
+  flat: false
+
+metadata:
+  add_loop_points: true      # Loop start=0, loop end=599
+
+packaging:
+  zip: true
+  zip_name: "AKWF--Akai-MPC.zip"
+
+skip:
+  banks: ["AKWF_stereo"]

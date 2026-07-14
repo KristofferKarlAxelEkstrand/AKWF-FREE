@@ -1,0 +1,35 @@
+{
+	"name": "AKWF-FREE",
+	"build": {
+		"context": "..",
+		"dockerfile": "Dockerfile"
+	},
+	"remoteUser": "vscode",
+	"remoteEnv": {
+		"PYTHONUNBUFFERED": "1"
+	},
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-python.python",
+				"esbenp.prettier-vscode",
+				"editorconfig.editorconfig",
+				"davidanson.vscode-markdownlint"
+			],
+			"settings": {
+				"editor.formatOnSave": true,
+				"files.eol": "\n",
+				"files.insertFinalNewline": true,
+				"files.trimTrailingWhitespace": true,
+				"[markdown]": {
+					"files.trimTrailingWhitespace": false
+				},
+				"python.defaultInterpreterPath": "/usr/bin/python3",
+				"[python]": {
+					"editor.defaultFormatter": "ms-python.python"
+				}
+			}
+		}
+	},
+	"postCreateCommand": "bash .devcontainer/post-create.sh"
+}

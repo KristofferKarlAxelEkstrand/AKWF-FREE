@@ -1,0 +1,41 @@
+name: "Surge 1024"
+output_dir: "AKWF--Surge/AKWF-1024"
+description: >
+  For Surge synthesizer. 1024 samples per cycle — higher quality than 512.
+  Surge requires power-of-2 cycle lengths for its wavetable engine.
+
+audio:
+  format: wav
+  bit_depth: 16
+  sample_rate: 44100
+  channels: mono
+  length_samples: 1024
+
+resample:
+  method: sox-speed          # legacy: sox speed 0.5859
+  quality: very-high
+
+normalize:
+  enabled: true
+  method: gain
+  gain_db: -6.4                # legacy: sox gain -6.4
+  remove_dc: false
+
+naming:
+  extension: ".wav"
+  filename_case: preserve
+  extension_case: lower
+
+structure:
+  mirror_source: true
+  flat: false
+
+metadata:
+  add_loop_points: true
+
+packaging:
+  zip: true
+  zip_name: "AKWF--Surge-1024.zip"
+
+skip:
+  banks: ["AKWF_stereo"]

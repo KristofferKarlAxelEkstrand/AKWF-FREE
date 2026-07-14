@@ -1,0 +1,39 @@
+name: "PNG Waveform Plots"
+output_dir: "AKWF-png"
+description: >
+  Visual PNG plots of each waveform for reference and documentation.
+  Useful for browsing and selecting waveforms visually.
+
+audio:
+  format: png
+  bit_depth: null
+  sample_rate: null
+  channels: mono
+  length_samples: null       # Plots source as-is
+
+resample:
+  method: none
+
+normalize:
+  enabled: false             # Plot raw waveform shape
+
+naming:
+  extension: ".png"
+  filename_case: preserve
+  extension_case: lower
+
+structure:
+  mirror_source: true
+  flat: false
+
+metadata:
+  image_width: 1920
+  image_height: 960
+  line_color: auto           # Or specify hex color
+
+packaging:
+  zip: true
+  zip_name: "AKWF-png.zip"
+
+skip:
+  banks: ["AKWF_stereo"]

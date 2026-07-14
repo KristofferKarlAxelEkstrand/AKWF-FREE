@@ -1,0 +1,43 @@
+name: "Teensy Audio Library (C Headers)"
+output_dir: "AKWF-c"
+description: >
+  C/C++ header files for Teensy Audio Library (embedded audio).
+  256 samples stored as unsigned 16-bit integer arrays.
+  Used for wavetable oscillators on Teensy microcontrollers.
+
+audio:
+  format: c-header
+  bit_depth: 16              # Unsigned 16-bit integers
+  sample_rate: null          # N/A — raw sample data
+  channels: mono
+  length_samples: 256        # Teensy standard wavetable size
+
+resample:
+  method: sox-rate           # SoX rate change: 44100 * (256/600) = 18816
+  quality: high
+
+normalize:
+  enabled: true
+  method: peak
+  target_dbfs: 0.0           # Full scale for embedded
+  remove_dc: false
+
+naming:
+  extension: ".h"
+  filename_case: preserve
+  extension_case: lower
+
+structure:
+  mirror_source: true
+  flat: false
+
+metadata:
+  add_loop_points: false     # N/A for C headers
+  include_ascii_art: true    # Include waveform ASCII visualization in header comment
+
+packaging:
+  zip: true
+  zip_name: "AKWF-c.zip"
+
+skip:
+  banks: ["AKWF_stereo"]

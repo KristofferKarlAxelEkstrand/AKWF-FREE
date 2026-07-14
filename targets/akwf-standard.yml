@@ -1,0 +1,58 @@
+# AKWF Standard Formats — Power-of-2 Matrix
+#
+# This defines all standard AKWF format combinations.
+# The build script expands the matrix into individual builds.
+#
+# Naming convention: AKWF--{length}smp-{bits}bit-{rate}k
+# Example: AKWF--1024smp-32bit-48k
+
+type: matrix
+
+description: >
+  Standard AKWF single-cycle waveform library in all power-of-2 lengths,
+  with both 16-bit integer and 32-bit float, at 44.1kHz and 48kHz.
+
+matrix:
+  length_samples: [64, 128, 256, 512, 1024, 2048]
+  bit_depth: [16, 32]
+  sample_rate: [44100, 48000]
+
+# Common settings applied to all combinations
+defaults:
+  audio:
+    format: wav
+    channels: mono
+
+  resample:
+    method: sinc
+    quality: very-high
+
+  normalize:
+    enabled: true
+    method: peak
+    target_dbfs: -0.1
+    remove_dc: true
+
+  naming:
+    extension: ".wav"
+    filename_case: preserve
+    extension_case: lower
+
+  structure:
+    mirror_source: true
+    flat: false
+
+  metadata:
+    add_loop_points: true
+
+  packaging:
+    zip: true
+
+  skip:
+    banks: ["AKWF_stereo"]
+
+# Output naming template (variables: {length}, {bits}, {rate_k})
+output_template:
+  dir: "AKWF--{length}smp-{bits}bit-{rate_k}k"
+  zip: "AKWF--{length}smp-{bits}bit-{rate_k}k.zip"
+  name: "AKWF {length}smp {bits}-bit {rate_k}kHz"

@@ -1,1 +1,12 @@
 .DS_Store
+
+# Build outputs
+dist/
+
+# Release archives
+releases/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
