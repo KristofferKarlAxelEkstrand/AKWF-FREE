@@ -1,0 +1,20 @@
+# Normalize line endings on checkout/commit (authoritative for Git)
+* text=auto eol=lf
+
+# Shell scripts must use LF (CRLF breaks `set -euo pipefail` on Linux)
+*.sh text eol=lf
+
+# Project text formats
+*.{py,yml,yaml,json,md,txt,toml,cfg,ini} text eol=lf
+*.{js,ts,css,html} text eol=lf
+Dockerfile text eol=lf
+Makefile text eol=lf
+
+# Windows scripts keep CRLF if added later
+*.{bat,cmd,ps1} text eol=crlf
+
+# Binary assets — never modify line endings
+*.{wav,WAV,mp3,flac,aiff,aif} binary
+*.{png,jpg,jpeg,gif,webp,ico} binary
+*.{zip,tar,gz,7z} binary
+*.{wt,raw,h2p,add} binary

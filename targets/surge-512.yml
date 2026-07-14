@@ -1,0 +1,41 @@
+name: "Surge 512"
+output_dir: "AKWF--Surge/AKWF-512"
+description: >
+  For Surge synthesizer. 512 samples per cycle — standard resolution.
+  Good balance of quality and file size.
+
+audio:
+  format: wav
+  bit_depth: 16
+  sample_rate: 44100
+  channels: mono
+  length_samples: 512
+
+resample:
+  method: sox-speed          # legacy: sox speed 1.1718
+  quality: high
+
+normalize:
+  enabled: true
+  method: gain
+  gain_db: -6.4                # legacy: sox gain -6.4
+  remove_dc: false
+
+naming:
+  extension: ".wav"
+  filename_case: preserve
+  extension_case: lower
+
+structure:
+  mirror_source: true
+  flat: false
+
+metadata:
+  add_loop_points: true
+
+packaging:
+  zip: true
+  zip_name: "AKWF--Surge-512.zip"
+
+skip:
+  banks: ["AKWF_stereo"]

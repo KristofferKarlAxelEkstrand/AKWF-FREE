@@ -1,0 +1,41 @@
+name: "Web Player (JSON)"
+output_dir: "AKWF-js"
+description: >
+  JSON format for web-based waveform players and Web Audio API usage.
+  Each bank is one JSON file containing all waveforms as float arrays.
+  Values normalized to -1.0 to 1.0 range.
+
+audio:
+  format: json
+  bit_depth: null            # Floating point, 6 decimal places
+  sample_rate: null          # N/A — abstract sample data
+  channels: mono
+  length_samples: 600        # Preserve original resolution
+
+resample:
+  method: none               # Keep original 600 samples
+
+normalize:
+  enabled: false             # Legacy parity: raw 16-bit → float, no re-normalize
+  method: peak
+  target_dbfs: 0.0
+  remove_dc: false
+
+naming:
+  extension: ".json"
+  filename_case: preserve
+  extension_case: lower
+
+structure:
+  mirror_source: false
+  flat: true                 # One JSON file per bank (flat structure)
+
+metadata:
+  generate_manifest: true    # Create manifest.json listing all banks
+
+packaging:
+  zip: true
+  zip_name: "AKWF-js.zip"
+
+skip:
+  banks: ["AKWF_stereo"]

@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+    branches: [master, main, updates]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: requirements.txt
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            sox libsox-fmt-all libsndfile1 gnuplot ffmpeg
+
+      - name: Install pre-commit
+        run: pip install pre-commit
+
+
+      - name: Run pre-commit formatting checks
+        run: pre-commit run --all-files
+
+      - name: Smoke build (one bank per target)
+        run: bash scripts/ci-smoke.sh
+        env:
+          BANK: AKWF_0001

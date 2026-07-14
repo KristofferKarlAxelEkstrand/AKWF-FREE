@@ -1,25 +1,35 @@
 {
 	"name": "AKWF-FREE",
 	"build": {
+		"context": "..",
 		"dockerfile": "Dockerfile"
 	},
 	"remoteUser": "vscode",
+	"remoteEnv": {
+		"PYTHONUNBUFFERED": "1"
+	},
 	"customizations": {
 		"vscode": {
 			"extensions": [
-				"dbaeumer.vscode-eslint",
+				"ms-python.python",
 				"esbenp.prettier-vscode",
 				"editorconfig.editorconfig",
-				"davidanson.vscode-markdownlint",
-				"ms-vscode.cpptools",
-				"ms-vscode.cmake-tools",
-				"twxs.cmake"
+				"davidanson.vscode-markdownlint"
 			],
 			"settings": {
 				"editor.formatOnSave": true,
-				"files.eol": "\n"
+				"files.eol": "\n",
+				"files.insertFinalNewline": true,
+				"files.trimTrailingWhitespace": true,
+				"[markdown]": {
+					"files.trimTrailingWhitespace": false
+				},
+				"python.defaultInterpreterPath": "/usr/bin/python3",
+				"[python]": {
+					"editor.defaultFormatter": "ms-python.python"
+				}
 			}
 		}
 	},
-	"postCreateCommand": "echo '\n   _____   ____  __.__      _____________' && echo '  /  _  \\ |    |/ _/  \\\\    /  \\\\_   _____/   F R E E' && echo ' /  /_\\\\  \\\\|      < \\\\   \\\\/\\\\/   /|    __)' && echo '/    |    \\\\    |  \\ \\\\        / |     \\\\' && echo '\\\\____|__  /____|__ \\ \\\\__/\\\\  /  \\\\___  /' && echo '        \\\\/        \\\\/      \\\\/       \\\\/' && echo '\\nEnvironment Check:' && node --version && npm --version && sox --version | head -n1 && ffmpeg -version | head -n1 && g++ --version | head -n1 && cmake --version | head -n1 && gdb --version | head -n1"
+	"postCreateCommand": "bash .devcontainer/post-create.sh"
 }
